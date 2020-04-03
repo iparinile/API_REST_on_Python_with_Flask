@@ -1,23 +1,23 @@
-from flask import (
-    Flask,
-    render_template
-)
+from flask import render_template
+import connexion
 
 # Создадим экземпляр приложения
-app = Flask(__name__, template_folder="templates")
+app = connexion.App(__name__, specification_dir='./')
+# Прочитаем файл swagger.yml для настройки конечных точек
+app.add_api('swagger.yml')
 
 
-# Создадим маршрут URL в своём приложении для "/"
+# Создадим маршрут URL в нашем приложении для "/"
 @app.route('/')
 def home():
     """
-    Эта функция просто отвечает на URL "localhost:5000/" в
-    адресной строке браузера
-    :return:        представленный шаблон 'home.html'
+    Эта функция просто отвечает на URL "localhost:5000/" в браузера
+
+    :return:        подствляет шаблон 'home.html'
     """
     return render_template('home.html')
 
 
-# Если мы работаем в автономном режиме, запустим приложение
+# Если мы работаем в автономном режиме, запускаем приложение
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
