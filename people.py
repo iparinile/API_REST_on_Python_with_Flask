@@ -1,3 +1,9 @@
+"""
+This is the people module and supports all the ReST actions for the
+PEOPLE collection
+"""
+
+# System modules
 from datetime import datetime
 
 
@@ -10,27 +16,26 @@ PEOPLE = {
     "Farrell": {
         "fname": "Doug",
         "lname": "Farrell",
-        "timestamp": get_timestamp()
+        "timestamp": get_timestamp(),
     },
     "Brockman": {
         "fname": "Kent",
         "lname": "Brockman",
-        "timestamp": get_timestamp()
+        "timestamp": get_timestamp(),
     },
     "Easter": {
         "fname": "Bunny",
         "lname": "Easter",
-        "timestamp": get_timestamp()
-    }
+        "timestamp": get_timestamp(),
+    },
 }
 
 
-# Create a handler for our read (GET) people
 def read():
     """
-    Эта функция отвечает на запрос для /api/people
-    с полными списками людей
-    :return:        отсортированный список людей
+    This function responds to a request for /api/people
+    with the complete lists of people
+            sorted list of people
     """
-    # Создать список людей из наших данных
+    # create the list of people from our data
     return [PEOPLE[key] for key in sorted(PEOPLE.keys())]
